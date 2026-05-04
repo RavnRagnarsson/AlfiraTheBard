@@ -1,0 +1,14 @@
+body { font-family: sans-serif; background: #1a1a1a; color: #e0e0e0; display: flex; justify-content: center; padding: 50px; }
+.player-card { background: #2d2d2d; padding: 2rem; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); width: 400px; }
+h2 { margin-top: 0; color: #00ffcc; text-align: center; }
+.controls { margin-bottom: 20px; border-bottom: 1px solid #444; padding-bottom: 20px; }
+select, button { width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: none; cursor: pointer; }
+button { background: #00ffcc; color: #1a1a1a; font-weight: bold; font-size: 1.1rem; }
+button:hover { background: #00d4aa; }
+.instruments-grid { display: grid; gap: 10px; }
+.instrument-row { display: flex; align-items: center; background: #3d3d3d; padding: 10px; border-radius: 8px; }
+.instrument-row input { margin-right: 15px; transform: scale(1.5); accent-color: #00ffcc; }
+.status { font-size: 0.8rem; text-align: center; color: #888; margin-top: 10px; }
+#progressBarBox { margin-top: 15px; }
+#progressBar { width: 100%; cursor: pointer; }
+#songTime { display: flex; justify-content: space-between; font-size: 0.7rem; color: #888; margin-top: 5px; }
