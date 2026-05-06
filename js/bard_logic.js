@@ -27,10 +27,29 @@ function initMixer() {
         const row = document.createElement('div');
         row.className = 'instrument-row';
         row.innerHTML = `
-            <input type="checkbox" id="check_${inst}" checked>
-            <label for="check_${inst}">${inst.toUpperCase()}</label>
+            <input type="checkbox" id="check_${inst}" checked style="display:none;">
+            <div class="instrument-icon">
+                <img src="img/${inst}.png" alt="${inst}">
+            </div>
+            <label>${inst.toUpperCase()}</label>
         `;
-        
+
+        // El evento ahora es para toda la FILA
+        row.addEventListener('click', () => {
+            const checkbox = row.querySelector('input');
+            
+            // Invertimos el estado
+            checkbox.checked = !checkbox.checked;
+            audio.muted = !checkbox.checked;
+
+            // Cambiamos la clase visual
+            if (audio.muted) {
+                row.classList.add('is-muted');
+            } else {
+                row.classList.remove('is-muted');
+            }
+        });        
+
         // Evento para mutear/desmutear al vuelo
         row.querySelector('input').addEventListener('change', (e) => {
             audio.muted = !e.target.checked;

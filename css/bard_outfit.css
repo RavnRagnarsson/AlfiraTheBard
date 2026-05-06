@@ -1,14 +1,148 @@
-body { font-family: sans-serif; background: #1a1a1a; color: #e0e0e0; display: flex; justify-content: center; padding: 50px; }
-.player-card { background: #2d2d2d; padding: 2rem; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); width: 400px; }
-h2 { margin-top: 0; color: #00ffcc; text-align: center; }
-.controls { margin-bottom: 20px; border-bottom: 1px solid #444; padding-bottom: 20px; }
-select, button { width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: none; cursor: pointer; }
-button { background: #00ffcc; color: #1a1a1a; font-weight: bold; font-size: 1.1rem; }
-button:hover { background: #00d4aa; }
-.instruments-grid { display: grid; gap: 10px; }
-.instrument-row { display: flex; align-items: center; background: #3d3d3d; padding: 10px; border-radius: 8px; }
-.instrument-row input { margin-right: 15px; transform: scale(1.5); accent-color: #00ffcc; }
-.status { font-size: 0.8rem; text-align: center; color: #888; margin-top: 10px; }
-#progressBarBox { margin-top: 15px; }
-#progressBar { width: 100%; cursor: pointer; }
-#songTime { display: flex; justify-content: space-between; font-size: 0.7rem; color: #888; margin-top: 5px; }
+body {
+    font-family: 'Georgia', serif; /* Una fuente con serifa da el toque medieval */
+    background: #0f0b08;
+    color: #e3d1b5;
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+}
+
+.player-card {
+    background: #2a1e17; /* Tono madera oscura */
+    padding: 2rem;
+    border-radius: 8px; /* Bordes menos redondeados, más sólidos */
+    border: 2px solid #3e2f26;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8), inset 0 0 20px rgba(0,0,0,0.5);
+    width: 420px;
+}
+
+h2 {
+    margin-top: 0;
+    color: #c1a35f; /* Dorado viejo */
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 1px double #c1a35f;
+    padding-bottom: 10px;
+}
+
+/* ----- ----- CONTROLS ----- ----- */
+.controls {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #4a3b2f;
+    padding-bottom: 20px;
+}
+
+/* Estilo para los selectores y botones */
+select, button {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 3px;
+    border: 1px solid #c1a35f;
+    background: #1a1410;
+    color: #e3d1b5;
+    font-family: inherit;
+}
+
+button {
+    background: #631d1d; /* Rojo sangre/vino profundo */
+    color: #f0e0c6;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+}
+
+button:hover {
+    background: #8b2929;
+    box-shadow: 0 0 10px rgba(193, 163, 95, 0.3);
+}
+
+/* ----- ----- INSTRUMENTS ----- ----- */
+/* Mixer - Filas de instrumentos */
+.instrument-row {
+    display: flex;
+    align-items: center;
+    background: #1f1813;
+    padding: 8px 15px; /* Ajustamos padding */
+    border-radius: 4px;
+    border-left: 4px solid #c1a35f; /* Detalle de color al lado */
+    margin-bottom: 8px;
+
+    cursor: pointer;
+    user-select: none; /* Evita que se seleccione el texto al hacer click rápido */
+    transition: all 0.3s ease;
+}
+
+.instrument-row input {
+    margin-right: 15px;
+    transform: scale(1.3);
+    accent-color: #c1a35f;
+}
+
+.instrument-row label {
+    font-variant: small-caps;
+    font-size: 1.1rem;
+    flex-grow: 1; /* Hace que el texto empuje si es necesario */
+}
+
+/* Quitamos el checkbox visualmente pero lo mantenemos en el HTML para la lógica */
+.instrument-row input[type="checkbox"] {
+    display: none;
+}
+
+/* Cuando el instrumento está muteado (Grises) */
+.instrument-row.is-muted .instrument-icon img {
+    filter: grayscale(100%) contrast(0.8); /* Grises y un poco menos de contraste */
+}
+
+.instrument-row.is-muted {
+    border-left-color: #4a3b2f; /* El dorado se apaga a un marrón oscuro */
+    opacity: 0.6;
+}
+
+/* Efecto Hover para que se sepa que es clickeable */
+.instrument-row:hover {
+    background: #2d241d;
+}
+
+/* Contenedor del icono */
+.instrument-icon {
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+    border: 1px solid #c1a35f;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: inset 0 0 10px rgba(193, 163, 95, 0.5);
+}
+
+.instrument-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Para que la imagen llene el cuadrado sin deformarse */
+    filter: grayscale(0%); /* Color total */
+    transition: filter 0.4s ease;
+}
+
+/* ----- ----- PROGRESS BAR ----- ----- */
+/* Barra de progreso estilo BG3 */
+#progressBar {
+    width: 100%;
+    cursor: pointer;
+    accent-color: #c1a35f;
+    background: #1a1410;
+}
+
+.status {
+    font-style: italic;
+    font-size: 0.85rem;
+    text-align: center;
+    color: #a68b6d;
+    margin-top: 15px;
+}
