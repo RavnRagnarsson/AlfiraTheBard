@@ -8,6 +8,13 @@ const statusText = document.getElementById('status');
 const progressBar = document.getElementById('progressBar');
 const currentTimeText = document.getElementById('currentTime');
 const durationText = document.getElementById('duration');
+// Visualizer
+const canvas = document.getElementById('visualizer');
+const canvasCtx = canvas.getContext('2d');
+let audioCtx;
+let analyser;
+let source;
+let dataArray;
 
 let audioElements = {};
 let isPlaying = false;
@@ -20,6 +27,7 @@ function initMixer() {
     instrumentos.forEach(inst => {
         // Crear elemento de audio (oculto)
         const audio = new Audio();
+        audio.crossOrigin = "anonymous";
         audio.loop = true;
         audioElements[inst] = audio;
 
@@ -31,7 +39,7 @@ function initMixer() {
             <div class="instrument-icon">
                 <img src="img/${inst}.png" alt="${inst}">
             </div>
-            <label>${inst.toUpperCase()}</label>
+            <label>${inst.charAt(0).toUpperCase() + inst.slice(1)}</label>
         `;
 
         // El evento ahora es para toda la FILA
@@ -73,8 +81,55 @@ function loadSongs() {
     audioElements[instrumentos[0]].onloadedmetadata = () => { progressBar.value = 0; };
 }
 
-// 3. Control Maestro (Play/Pause)
+// 3. Inicializa el visualizar de barras
+function setupVisualizer() {
+    // Creamos el contexto de audio solo la primera vez que se da a PLAY
+    if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        analyser = audioCtx.createAnalyser();
+        
+        // Conectamos el "leaderAudio" al analizador
+        source = audioCtx.createMediaElementSource(leaderAudio);
+        source.connect(analyser);
+        analyser.connect(audioCtx.destination);
+        
+        analyser.fftSize = 128; // Cantidad de barras
+        const bufferLength = analyser.frequencyBinCount;
+        dataArray = new Uint8Array(bufferLength);
+        
+        draw();
+    }
+}
+
+// 4. Dibuja las barras en el visualizador
+function draw() {
+    requestAnimationFrame(draw);
+    analyser.getByteFrequencyData(dataArray);
+
+    // Limpiar el canvas
+    canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
+
+    const barWidth = (canvas.width / dataArray.length) * 2.5;
+    let x = 0;
+
+    for (let i = 0; i < dataArray.length; i++) {
+        const barHeight = dataArray[i] / 5; // Ajustamos la escala para que no se salga del canvas
+
+        // Color dorado/ámbar con opacidad basada en la altura
+        canvasCtx.fillStyle = `rgba(193, 163, 95, ${barHeight / 40})`;
+        canvasCtx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+
+        x += barWidth + 2;
+    }
+}
+
+// 5. Control Maestro (Play/Pause)
 btnPlay.addEventListener('click', () => {
+    setupVisualizer(); // Inicializa el analizador
+    if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+    }
+
     if (!isPlaying) {
         // Reproducir todos simultáneamente
         Object.values(audioElements).forEach(a => a.play());

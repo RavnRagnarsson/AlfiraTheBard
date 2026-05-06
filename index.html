@@ -2,24 +2,25 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Multitrack Player Experiment</title>
+    <title>Alfira The Bard</title>
     <link rel="stylesheet" href="css/bard_outfit.css">
     <script src="js/bard_logic.js" defer></script>
 </head>
 <body>
 
 <div class="player-card">
-    <h2>Gem Mixer Pro</h2>
+    <h2>Alfira The Bard</h2>
+    <canvas id="visualizer" width="400" height="60"></canvas>
     
     <div class="controls">
-        <label>Selecciona Canción:</label>
+        <label>Choose a song:</label>
         <select id="songSelect">
-            <option value="bard-dance">Danza del bardo</option>
-            <option value="of-divinity-and-sin">De la divinidad y el pecado</option>
-            <option value="old-time-battles">Viejas batallas</option>
-            <option value="sing-for-me">Canta para mí</option>
-            <option value="the-power">El poder</option>
-            <option value="the-queens-high-seas">El mar de la Reina</option>
+            <option value="bard-dance">Bard Dance</option>
+            <option value="of-divinity-and-sin">Of Divinity and Sin</option>
+            <option value="old-time-battles">Old Time Battles</option>
+            <option value="sing-for-me">Sing For Me</option>
+            <option value="the-power">The Power</option>
+            <option value="the-queens-high-seas">The Queen's High Seas</option>
         </select>
 
         <button id="btnPlay">PLAY / PAUSE</button>

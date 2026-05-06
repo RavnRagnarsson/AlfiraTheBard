@@ -146,3 +146,13 @@ button:hover {
     color: #a68b6d;
     margin-top: 15px;
 }
+
+/* ----- ----- WAVES VISUALIZER ----- ----- */
+#visualizer {
+    width: 100%;
+    height: 60px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    margin-bottom: 15px;
+    display: block;
+}
