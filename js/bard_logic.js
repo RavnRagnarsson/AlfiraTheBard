@@ -155,10 +155,11 @@ songSelect.addEventListener('change', () => {
 // Inicializar al cargar
 initMixer();
 
-// Actualizar la barra según el progreso del primer audio (el líder)
+// Elegir una pieza de audio para dirigir al resto (el líder)
 const leaderAudio = audioElements[instrumentos[2]]; 
 
 leaderAudio.ontimeupdate = () => {
+    // Actualizar la barra de progreso
     if (!isNaN(leaderAudio.duration)) {
         const percentage = (leaderAudio.currentTime / leaderAudio.duration) * 100;
         progressBar.value = percentage;
@@ -167,6 +168,18 @@ leaderAudio.ontimeupdate = () => {
         const formatTime = (time) => Math.floor(time / 60) + ":" + Math.floor(time % 60).toString().padStart(2, '0');
         currentTimeText.innerText = formatTime(leaderAudio.currentTime);
         durationText.innerText = formatTime(leaderAudio.duration);
+    }
+
+    // Para evitar desfases acumulados después de varios loops
+    // Si el líder está cerca del final o acaba de loopear
+    if (leaderAudio.currentTime < 0.1) { 
+        instrumentos.forEach(inst => {
+            const audio = audioElements[inst];
+            // Si la diferencia de tiempo es mayor a 50ms, forzamos sincronía
+            if (Math.abs(audio.currentTime - leaderAudio.currentTime) > 0.05) {
+                audio.currentTime = leaderAudio.currentTime;
+            }
+        });
     }
 };
 
