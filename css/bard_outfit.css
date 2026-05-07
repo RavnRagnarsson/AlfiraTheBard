@@ -1,6 +1,8 @@
 body {
     font-family: 'Georgia', serif; /* Una fuente con serifa da el toque medieval */
-    background: #0f0b08;
+    background-image: url('../img/bg3_wallpaper.jpg');
+    background-size: cover;
+    background-color: #0f0b08;
     color: #e3d1b5;
     display: flex;
     justify-content: center;
@@ -8,7 +10,7 @@ body {
 }
 
 .player-card {
-    background: #2a1e17; /* Tono madera oscura */
+    background: rgba(42, 30, 23, 0.87); /* Tono madera oscura */
     padding: 2rem;
     border-radius: 8px; /* Bordes menos redondeados, más sólidos */
     border: 2px solid #3e2f26;
