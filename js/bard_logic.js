@@ -156,7 +156,7 @@ songSelect.addEventListener('change', () => {
 initMixer();
 
 // Actualizar la barra según el progreso del primer audio (el líder)
-const leaderAudio = audioElements[instrumentos[0]]; 
+const leaderAudio = audioElements[instrumentos[2]]; 
 
 leaderAudio.ontimeupdate = () => {
     if (!isNaN(leaderAudio.duration)) {
