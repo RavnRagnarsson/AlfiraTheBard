@@ -51,12 +51,14 @@ body {
 
 /* ----- ----- CARD ----- ----- */
 .player-card {
-    background: rgba(42, 30, 23, 0.87); /* Tono madera oscura */
+    background: rgba(42, 30, 23, 0.92); /* Tono madera oscura */
     padding: 2rem;
-    border-radius: 8px; /* Bordes menos redondeados, más sólidos */
-    border: 2px solid #3e2f26;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.8), inset 0 0 20px rgba(0,0,0,0.5);
+    border-radius: 8px;
+    border: 2px solid var(--gold-muted); /* Borde dorado apagado */
+    box-shadow: 0 10px 40px rgba(0,0,0,0.9), 
+                inset 0 0 30px rgba(0,0,0,0.6);
     width: 420px;
+    position: relative;
 }
 
 /* ----- ----- CONTROLS ----- ----- */
@@ -86,11 +88,16 @@ button {
     cursor: pointer;
     transition: all 0.3s;
     text-transform: uppercase;
+    transition: background-color 0.2s ease, transform 0.1s active;
 }
 
 button:hover {
     background: #8b2929;
     box-shadow: 0 0 10px rgba(193, 163, 95, 0.3);
+}
+
+button:active {
+    transform: scale(0.98); /* Pequeño efecto de pulsación */
 }
 
 /* ----- ----- INSTRUMENTS ----- ----- */
@@ -177,17 +184,6 @@ button:hover {
 
 .instrument-row:not(.is-muted) .instrument-icon img {
     filter: drop-shadow(0 0 8px var(--gold-bright)) brightness(1.2);
-}
-
-.player-card {
-    background: linear-gradient(145deg, #2a1e17, #1a1410); /* Degradado sutil */
-    padding: 2rem;
-    border-radius: 8px;
-    border: 2px solid var(--gold-muted); /* Borde dorado apagado */
-    box-shadow: 0 10px 40px rgba(0,0,0,0.9), 
-                inset 0 0 30px rgba(0,0,0,0.6);
-    width: 420px;
-    position: relative;
 }
 
 /* Si la pantalla es muy estrecha, volvemos a una sola columna */
