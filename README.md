@@ -1,45 +1,55 @@
 # 🎵 Alfira The Bard
 
-Un reproductor de audio multitrack experimental desarrollado en HTML5, CSS3 y JavaScript vanilla. Este mezclador permite interactuar con pistas independientes en tiempo real, facilitando la creación de mezclas dinámicas y el estudio de capas musicales sincronizadas.
+An experimental multitrack audio player developed using HTML5, CSS3, and Vanilla JavaScript. This mixer allows real-time interaction with independent tracks, enabling the creation of dynamic mixes and the study of synchronized musical layers.
 
-## 🚀 Características
+>*"Music is the voice of the gods, and Milil is the one who teaches us to listen."* — This project has been blessed by Milil, the Lord of Song
 
-*   **Sincronización Total:** Reproducción simultánea de múltiples archivos de audio (`.ogg`).
-*   **Mezcla en Vivo:** Panel de instrumentos para activar/silenciar (mute/unmute) pistas al vuelo.
-*   **Control de Progreso:** Barra de desplazamiento para navegar por la cronología de la canción de forma fluida.
-*   **Selector de Temas:** Soporte para múltiples sets de canciones con la misma estructura instrumental.
+## 🚀 Features
+Perfect Synchronization: Simultaneous playback of multiple audio files (.ogg).
 
-## 🛠️ Estructura del Proyecto
+*   **Live Mixing:** Instrument panel to mute/unmute tracks on the fly by interacting directly with their icons.
+*   **Dynamic Visualizer:** Real-time frequency spectrum display blessed by the Lord of Song.
+*   **Progress Control:** Fluid seek bar to navigate through the song's timeline.
+*   **Track Selection:** Support for multiple song sets with the same instrumental structure.
+*   **Immersive UI:** A visual experience inspired by the aesthetic of Baldur's Gate 3.
 
-Para que el mixer funcione, los archivos deben estar organizados de la siguiente manera:
+## 🛠️ Project Structure
+
+For the mixer to function correctly, files must be organized as follows:
 
 ```text
 /
 ├── index.html
-├── style.css
-├── script.js
+├── css/bard_outfit.css
+├── js/bard_logic.js
+├── img/
+    ├── favicon.webp
+    ├── drum.png
+    ├── flute.png
+    └── ... (remaining instruments)
 └── music/
-    ├── nombre-cancion_drum.ogg
-    ├── nombre-cancion_flute.ogg
-    └── ... (resto de instrumentos)
+    ├── song-name_drum.ogg
+    ├── song-name_flute.ogg
+    └── ... (remaining instruments)
 ```
 
-# 📜 Créditos y Atribuciones
-## 💭 Inspiración Original
-Este experimento está inspirado en el proyecto de [Stuart Thompson](https://sthom.kiwi) que podés encontrar [acá](https://github.com/s-thom/bg3-music-box).
+# 📜 Credits & Attributions
 
-## 🎶 Música
-Toda la música utilizada en las demostraciones de este proyecto pertenece a la banda sonora de Baldur's Gate 3.
+## 💭 Original Inspiration
 
-Compositor: Borislav Slavov.
+This experiment is inspired by [Stuart Thompson's](https://sthom.kiwi) project, which you can find [here](https://github.com/s-thom/bg3-music-box).
 
-Estudio: Larian Studios.
+## 🎶 Music
 
-Nota: Este proyecto es puramente educativo y no tiene fines comerciales. Todos los derechos pertenecen a sus respectivos dueños.
+All music used in this project's demonstrations belongs to the Baldur's Gate 3 original soundtrack.
 
-# ⚙️ Instalación
-Clona este repositorio.
+*   **Composer:** Borislav Slavov.
+*   **Studio:** Larian Studios.
 
-Coloca tus archivos de audio en la carpeta /music siguiendo la nomenclatura cancion_instrumento.ogg.
+*Note: This side-project is purely educational and non-commercial. All rights belong to their respective owners.*
 
-Abre index.html en tu navegador favorito. ¡Y listo para mezclar!
+# ⚙️ Installation
+
+1. Clone this repository.
+2. Run a local server (like Python's http.server or VS Code's Live Server) to avoid CORS issues with the Audio API.
+3. Go to: http://localhost:8000/
