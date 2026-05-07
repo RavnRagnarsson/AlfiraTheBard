@@ -56,6 +56,8 @@ function initMixer() {
             } else {
                 row.classList.remove('is-muted');
             }
+
+            row.classList.toggle('is-muted', audio.muted);
         });        
 
         // Evento para mutear/desmutear al vuelo
@@ -106,17 +108,20 @@ function draw() {
     requestAnimationFrame(draw);
     analyser.getByteFrequencyData(dataArray);
 
-    // Limpiar el canvas
     canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
 
-    const barWidth = (canvas.width / dataArray.length) * 2.5;
+    const barWidth = (canvas.width / dataArray.length) * 2;
     let x = 0;
 
     for (let i = 0; i < dataArray.length; i++) {
-        const barHeight = dataArray[i] / 5; // Ajustamos la escala para que no se salga del canvas
+        const barHeight = dataArray[i] / 4; // Un poco más altas
 
-        // Color dorado/ámbar con opacidad basada en la altura
-        canvasCtx.fillStyle = `rgba(193, 163, 95, ${barHeight / 40})`;
+        // Gradiente dorado para que brille como en la imagen
+        const gradient = canvasCtx.createLinearGradient(0, canvas.height, 0, 0);
+        gradient.addColorStop(0, '#c19a6b'); // Oro apagado abajo
+        gradient.addColorStop(1, '#f4d03f'); // Oro brillante arriba
+
+        canvasCtx.fillStyle = gradient;
         canvasCtx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
 
         x += barWidth + 2;
@@ -165,7 +170,12 @@ leaderAudio.ontimeupdate = () => {
         progressBar.value = percentage;
         
         // Formatear tiempo
-        const formatTime = (time) => Math.floor(time / 60) + ":" + Math.floor(time % 60).toString().padStart(2, '0');
+        const formatTime = (time) => {
+            if (isNaN(time)) return "0:00";
+            const mins = Math.floor(time / 60);
+            const secs = Math.floor(time % 60).toString().padStart(2, '0');
+            return `${mins}:${secs}`;
+        };
         currentTimeText.innerText = formatTime(leaderAudio.currentTime);
         durationText.innerText = formatTime(leaderAudio.duration);
     }

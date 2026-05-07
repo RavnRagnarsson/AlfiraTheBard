@@ -1,8 +1,8 @@
 :root {
     --bg-dark: #121212;
-    --gold-bright: #f4d03f; /* Un oro más vivo para brillos */
-    --gold-muted: #c19a6b; /* Un oro más bronce/papel para bordes */
-    --text-main: #e0e0e0;
+    --gold-bright: #f4d03f;
+    --gold-muted: #c19a6b;
+    --text-main: #e3d1b5;
 }
 
 /* ----- ----- BODY ----- ----- */
@@ -41,12 +41,12 @@ body {
     /* border-radius: 50%; */
 }
 
-/* Estilos para el título (El Logotipo) */
 .bard-title {
-    font-family: 'Cinzel', serif; /* O la fuente estilo D&D que estés usando */
+    font-family: 'Cinzel', serif;
     font-size: 2.5rem;
-    color: var(--gold-color); /* Usando el color oro que definimos */
-    margin: 0; /* Quitamos márgenes por defecto para una fusión limpia */
+    color: var(--gold-bright); /* Cambiado de --gold-color a --gold-bright */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Le da profundidad */
+    margin: 0;
 }
 
 /* ----- ----- CARD ----- ----- */
@@ -168,17 +168,31 @@ button:hover {
 
 .instrument-icon img {
     width: 100%;
-    object-fit: cover; /* Para que la imagen llene el cuadrado sin deformarse */
-    filter: grayscale(0%); /* Color total */
-    transition: filter 0.4s ease;
+    object-fit: cover;
+    transition: all 0.4s ease;
     display: block;
     cursor: pointer;
+    filter: grayscale(0%) brightness(0.8); /* Un poco más apagado por defecto */
+}
+
+.instrument-row:not(.is-muted) .instrument-icon img {
     filter: drop-shadow(0 0 8px var(--gold-bright)) brightness(1.2);
+}
+
+.player-card {
+    background: linear-gradient(145deg, #2a1e17, #1a1410); /* Degradado sutil */
+    padding: 2rem;
+    border-radius: 8px;
+    border: 2px solid var(--gold-muted); /* Borde dorado apagado */
+    box-shadow: 0 10px 40px rgba(0,0,0,0.9), 
+                inset 0 0 30px rgba(0,0,0,0.6);
+    width: 420px;
+    position: relative;
 }
 
 /* Si la pantalla es muy estrecha, volvemos a una sola columna */
 @media (max-width: 480px) {
-    .instrument-panel {
+    .instruments-grid {
         grid-template-columns: 1fr;
     }
 }
