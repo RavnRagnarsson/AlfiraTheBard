@@ -1,3 +1,11 @@
+:root {
+    --bg-dark: #121212;
+    --gold-bright: #f4d03f; /* Un oro más vivo para brillos */
+    --gold-muted: #c19a6b; /* Un oro más bronce/papel para bordes */
+    --text-main: #e0e0e0;
+}
+
+/* ----- ----- BODY ----- ----- */
 body {
     font-family: 'Georgia', serif; /* Una fuente con serifa da el toque medieval */
     background-image: url('../img/bg3_wallpaper.jpg');
@@ -9,6 +17,39 @@ body {
     padding: 50px;
 }
 
+/* Contenedor principal de la cabecera (para centrar todo el grupo) */
+.bard-header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+/* ----- ----- HEADER ----- ----- */
+.header-content {
+    display: flex;
+    align-items: center; /* Alinea verticalmente al centro la imagen y el texto */
+    gap: 15px; /* Espacio entre la imagen y el texto para que no choquen */
+}
+
+/* Estilos para la imagen (El Isotipo) */
+.bard-logo {
+    width: 60px; /* Tamaño de la imagen para que sea proporcional al título */
+    height: 60px; /* Mismo tamaño para mantenerla cuadrada */
+    object-fit: cover; /* Asegura que la imagen no se deforme */
+    /* Si la imagen tiene fondo y quieres redondearla, añade esto: */
+    /* border-radius: 50%; */
+}
+
+/* Estilos para el título (El Logotipo) */
+.bard-title {
+    font-family: 'Cinzel', serif; /* O la fuente estilo D&D que estés usando */
+    font-size: 2.5rem;
+    color: var(--gold-color); /* Usando el color oro que definimos */
+    margin: 0; /* Quitamos márgenes por defecto para una fusión limpia */
+}
+
+/* ----- ----- CARD ----- ----- */
 .player-card {
     background: rgba(42, 30, 23, 0.87); /* Tono madera oscura */
     padding: 2rem;
@@ -16,16 +57,6 @@ body {
     border: 2px solid #3e2f26;
     box-shadow: 0 10px 40px rgba(0,0,0,0.8), inset 0 0 20px rgba(0,0,0,0.5);
     width: 420px;
-}
-
-h2 {
-    margin-top: 0;
-    color: #c1a35f; /* Dorado viejo */
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    border-bottom: 1px double #c1a35f;
-    padding-bottom: 10px;
 }
 
 /* ----- ----- CONTROLS ----- ----- */
@@ -137,14 +168,12 @@ button:hover {
 
 .instrument-icon img {
     width: 100%;
-
     object-fit: cover; /* Para que la imagen llene el cuadrado sin deformarse */
     filter: grayscale(0%); /* Color total */
     transition: filter 0.4s ease;
-
-    height: auto;
     display: block;
     cursor: pointer;
+    filter: drop-shadow(0 0 8px var(--gold-bright)) brightness(1.2);
 }
 
 /* Si la pantalla es muy estrecha, volvemos a una sola columna */
