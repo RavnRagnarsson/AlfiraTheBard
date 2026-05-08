@@ -46,6 +46,7 @@ body {
     color: var(--gold-bright); /* Cambiado de --gold-color a --gold-bright */
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Le da profundidad */
     margin: 0;
+    text-align: center;
 }
 
 /* Agrupador para que el título y subtítulos se apilen al lado del logo */
