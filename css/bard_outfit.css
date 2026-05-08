@@ -37,8 +37,7 @@ body {
     width: 60px; /* Tamaño de la imagen para que sea proporcional al título */
     height: 60px; /* Mismo tamaño para mantenerla cuadrada */
     object-fit: cover; /* Asegura que la imagen no se deforme */
-    /* Si la imagen tiene fondo y quieres redondearla, añade esto: */
-    /* border-radius: 50%; */
+    border-radius: 25%;
 }
 
 .bard-title {
@@ -63,9 +62,8 @@ body {
 
 /* ----- ----- CONTROLS ----- ----- */
 .controls {
-    margin-bottom: 20px;
-    border-bottom: 1px solid #4a3b2f;
-    padding-bottom: 20px;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
 }
 
 /* Estilo para los selectores y botones */
@@ -107,7 +105,7 @@ button:active {
     /* Crea dos columnas de igual tamaño */
     grid-template-columns: repeat(2, 1fr); 
     /* Espacio entre las imágenes */
-    gap: 15px; 
+    gap: 10px; 
     /* Centra el panel si es necesario */
     max-width: 400px;
     margin: 0 auto;
@@ -120,8 +118,6 @@ button:active {
     padding: 8px 15px; /* Ajustamos padding */
     border-radius: 4px;
     border-left: 4px solid #c1a35f; /* Detalle de color al lado */
-    margin-bottom: 8px;
-
     cursor: pointer;
     user-select: none; /* Evita que se seleccione el texto al hacer click rápido */
     transition: all 0.3s ease;
@@ -164,7 +160,7 @@ button:active {
     width: 50px;
     height: 50px;
     margin-right: 15px;
-    border: 1px solid #c1a35f;
+    border-radius: 5px;
     background: #000;
     display: flex;
     align-items: center;
@@ -218,4 +214,30 @@ button:active {
     border-radius: 5px;
     margin-bottom: 15px;
     display: block;
+}
+
+/* ----- ----- SEPARATOR ----- ----- */
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 25px 0; /* Espaciado arriba y abajo */
+}
+
+.separator::before,
+.separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #4a3b2f; /* El color marrón oscuro de tus bordes */
+    box-shadow: 0 1px 0 rgba(193, 163, 95, 0.2); /* Un brillo dorado sutil bajo la línea */
+}
+
+.separator span {
+    padding: 0 15px;
+    color: var(--gold-muted);
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
 }
