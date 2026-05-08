@@ -34,8 +34,8 @@ body {
 
 /* Estilos para la imagen (El Isotipo) */
 .bard-logo {
-    width: 60px; /* Tamaño de la imagen para que sea proporcional al título */
-    height: 60px; /* Mismo tamaño para mantenerla cuadrada */
+    width: 90px; /* Tamaño de la imagen para que sea proporcional al título */
+    height: 90px; /* Mismo tamaño para mantenerla cuadrada */
     object-fit: cover; /* Asegura que la imagen no se deforme */
     border-radius: 25%;
 }
@@ -61,6 +61,7 @@ body {
     color: #e3d1b5;
     opacity: 0.8;
     font-style: italic;
+    text-align: center;
 }
 
 .bard-lore {
@@ -68,6 +69,7 @@ body {
     font-size: 0.85rem;
     color: var(--gold-muted);
     letter-spacing: 0.5px;
+    text-align: center;
 }
 
 /* Un toque de brillo para el nombre de la deidad */
