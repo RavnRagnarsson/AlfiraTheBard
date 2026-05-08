@@ -48,6 +48,38 @@ body {
     margin: 0;
 }
 
+/* Agrupador para que el título y subtítulos se apilen al lado del logo */
+.title-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.bard-subtitle {
+    margin: 5px 0 2px 0;
+    font-size: 0.95rem;
+    color: #e3d1b5;
+    opacity: 0.8;
+    font-style: italic;
+}
+
+.bard-lore {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--gold-muted);
+    letter-spacing: 0.5px;
+}
+
+/* Un toque de brillo para el nombre de la deidad */
+.milil {
+    color: var(--gold-bright);
+    transition: text-shadow 0.3s ease;
+}
+
+.milil:hover {
+    text-shadow: 0 0 8px var(--gold-bright);
+}
+
 /* ----- ----- CARD ----- ----- */
 .player-card {
     background: rgba(42, 30, 23, 0.92); /* Tono madera oscura */
