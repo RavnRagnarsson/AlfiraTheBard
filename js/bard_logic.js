@@ -95,7 +95,7 @@ function setupVisualizer() {
         source.connect(analyser);
         analyser.connect(audioCtx.destination);
         
-        analyser.fftSize = 128; // Cantidad de barras
+        analyser.fftSize = 512; // Cantidad de barras
         const bufferLength = analyser.frequencyBinCount;
         dataArray = new Uint8Array(bufferLength);
         
