@@ -3,7 +3,6 @@ const instrumentos = ['drum', 'flute', 'lute', 'lyre', 'violin', 'voice'];
 const songSelect = document.getElementById('songSelect');
 const mixerContainer = document.getElementById('mixer');
 const btnPlay = document.getElementById('btnPlay');
-const statusText = document.getElementById('status');
 // Barra de Progreso
 const progressBar = document.getElementById('progressBar');
 const currentTimeText = document.getElementById('currentTime');
@@ -79,7 +78,6 @@ function loadSongs() {
         audioElements[inst].load();
         audioElements[inst].muted = !document.getElementById(`check_${inst}`).checked;
     });
-    statusText.innerText = `Cargada: ${songName}`;
     audioElements[instrumentos[0]].onloadedmetadata = () => { progressBar.value = 0; };
 }
 
@@ -140,12 +138,10 @@ btnPlay.addEventListener('click', () => {
         Object.values(audioElements).forEach(a => a.play());
         isPlaying = true;
         btnPlay.innerText = "PAUSE";
-        statusText.innerText = "Reproduciendo...";
     } else {
         Object.values(audioElements).forEach(a => a.pause());
         isPlaying = false;
         btnPlay.innerText = "PLAY";
-        statusText.innerText = "En pausa";
     }
 });
 
