@@ -14,7 +14,6 @@ body {
     background-attachment: fixed; /* Esto hace que el fondo se quede quieto al hacer scroll, muy pro */
     background-color: #0f0b08;
     color: #e3d1b5;
-    
     /* Cambiamos el centrado de la card por un flujo vertical */
     display: flex;
     flex-direction: column;
@@ -32,12 +31,12 @@ body {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 10px;
     /* Efecto de cristal oscuro para que se vea el fondo pero se lea el texto */
-    background: rgba(15, 11, 8, 0.6);
+    background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(8px); /* Esto desenfoca el fondo de pantalla por detrás */
     padding: 40px;
-    border-radius: 15px;
+    border-radius: 10px;
     border: 1px solid rgba(193, 163, 95, 0.1); /* Un borde dorado casi invisible */
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 }
@@ -150,24 +149,24 @@ button:active {
 .instruments-grid {
     display: grid;
     /* Crea dos columnas de igual tamaño */
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
     /* Espacio entre las imágenes */
     gap: 10px;
-    /* Centra el panel si es necesario */
-    max-width: 400px;
-    margin: 0 auto;
+    width: 100%;
+    padding: 5px 0;
 }
 
 .instrument-row {
+    background: rgba(255, 255, 255, 0.03); /* Fondo casi invisible */
+    border: 1px solid rgba(193, 163, 95, 0.7); /* Borde dorado sutil */
+    border-radius: 5px;
+    padding: 10px;
     display: flex;
     align-items: center;
-    background: #1f1813;
-    padding: 8px 15px; /* Ajustamos padding */
-    border-radius: 4px;
-    border-left: 4px solid #c1a35f; /* Detalle de color al lado */
-    cursor: pointer;
-    user-select: none; /* Evita que se seleccione el texto al hacer click rápido */
+    gap: 20px;
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 .instrument-row input {
@@ -199,21 +198,19 @@ button:active {
 
 /* Efecto Hover para que se sepa que es clickeable */
 .instrument-row:hover {
-    background: #2d241d;
+    background: rgba(193, 163, 95, 0.08);
+    border-color: var(--gold-bright);
+    transform: translateY(-1px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 /* Contenedor del icono */
 .instrument-icon {
-    width: 50px;
-    height: 50px;
-    margin-right: 15px;
-    border-radius: 5px;
-    background: #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    box-shadow: inset 0 0 10px rgba(193, 163, 95, 0.5);
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 5px rgba(193, 163, 95, 0.4));
+    /* Si tus iconos tienen fondo, podés redondearlos aquí */
 }
 
 .instrument-icon img {
