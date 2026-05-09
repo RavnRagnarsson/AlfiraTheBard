@@ -224,13 +224,6 @@ button:active {
     filter: drop-shadow(0 0 8px var(--gold-bright)) brightness(1.2);
 }
 
-/* Si la pantalla es muy estrecha, volvemos a una sola columna */
-@media (max-width: 480px) {
-    .instruments-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
 /* ----- ----- PROGRESS BAR ----- ----- */
 /* Barra de progreso estilo BG3 */
 #progressBar {
@@ -279,4 +272,65 @@ button:active {
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: bold;
+}
+
+/* ----- ----- MOBILE ----- ----- */
+@media (max-width: 768px) {
+    .main-container {
+        width: 95%; /* Ocupa más pantalla en móviles */
+    }
+}
+
+@media (max-width: 480px) {
+    .bard-logo {
+        width: 80px; /* Reducimos el tamaño para ganar espacio vertical */
+        height: 80px;
+    }
+    
+    .bard-title {
+        font-size: 1.8rem; /* Título más manejable */
+    }
+
+    .bard-subtitle {
+        font-size: 0.85rem; /* Subtítulo más compacto */
+    }
+}
+
+@media (max-width: 480px) {
+    .instruments-grid {
+        grid-template-columns: 1fr; /* Una sola columna obligatoria */
+        gap: 12px;
+    }
+
+    .instrument-row {
+        padding: 15px; /* Aumentamos el área de toque */
+        justify-content: flex-start;
+    }
+
+    .instrument-icon {
+        width: 40px; /* Iconos ligeramente más pequeños */
+        height: 40px;
+    }
+
+    .instrument-row label {
+        font-size: 1rem; /* Texto legible sin esfuerzo */
+    }
+}
+
+@media (max-width: 480px) {
+    button {
+        padding: 16px; /* Botón más "gordo" para el pulgar */
+        font-size: 1.1rem;
+    }
+
+    select {
+        padding: 10px; /* Selector más compacto */
+    }
+}
+
+/* Si la pantalla es muy estrecha, volvemos a una sola columna */
+@media (max-width: 480px) {
+    .instruments-grid {
+        grid-template-columns: 1fr;
+    }
 }
