@@ -33,7 +33,7 @@ body {
     gap: 5px;
     /* Efecto de cristal oscuro para que se vea el fondo pero se lea el texto */
     background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(8px); /* Esto desenfoca el fondo de pantalla por detrás */
+    backdrop-filter: blur(3px); /* Esto desenfoca el fondo de pantalla por detrás */
     padding: 10px;
     border: 1px solid rgba(193, 163, 95, 0.1); /* Un borde dorado casi invisible */
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
@@ -275,9 +275,43 @@ button:active {
 }
 
 /* ----- ----- MOBILE ----- ----- */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
+    /* 1. Pasamos a 2 columnas incluso en pantallas pequeñas */
+    .instruments-grid {
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 8px; /* Espacio más ajustado para aprovechar el ancho */
+    }
+
+    /* 2. Ajustamos la fila para que funcione como "celda" vertical */
+    .instrument-row {
+        flex-direction: column; /* Icono arriba, texto abajo */
+        padding: 10px 5px;
+        text-align: center;
+        gap: 5px;
+    }
+
+    /* 3. Iconos un poco más pequeños para que no saturen */
+    .instrument-icon {
+        width: 35px;
+        height: 35px;
+    }
+
+    .instrument-row label {
+        font-size: 0.85rem; /* Texto más pequeño para que no se corte */
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis; /* Si el nombre es muy largo, pone "..." */
+    }
+
+    /* 4. El contenedor principal un poco más ancho para dar aire */
     .main-container {
-        width: 95%; /* Ocupa más pantalla en móviles */
+        width: 94%;
+        padding: 8px;
+    }
+
+    .separator {
+        margin: 10px; /* Espaciado arriba y abajo */
     }
 }
 
@@ -297,27 +331,6 @@ button:active {
 }
 
 @media (max-width: 480px) {
-    .instruments-grid {
-        grid-template-columns: 1fr; /* Una sola columna obligatoria */
-        gap: 12px;
-    }
-
-    .instrument-row {
-        padding: 15px; /* Aumentamos el área de toque */
-        justify-content: flex-start;
-    }
-
-    .instrument-icon {
-        width: 40px; /* Iconos ligeramente más pequeños */
-        height: 40px;
-    }
-
-    .instrument-row label {
-        font-size: 1rem; /* Texto legible sin esfuerzo */
-    }
-}
-
-@media (max-width: 480px) {
     button {
         padding: 16px; /* Botón más "gordo" para el pulgar */
         font-size: 1.1rem;
@@ -325,12 +338,5 @@ button:active {
 
     select {
         padding: 10px; /* Selector más compacto */
-    }
-}
-
-/* Si la pantalla es muy estrecha, volvemos a una sola columna */
-@media (max-width: 480px) {
-    .instruments-grid {
-        grid-template-columns: 1fr;
     }
 }
