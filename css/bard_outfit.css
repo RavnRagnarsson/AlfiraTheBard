@@ -47,6 +47,7 @@ body {
     align-items: center;
     text-align: center;
     gap: 20px;
+    margin-top: 15px;
 }
 
 .header-content {
@@ -102,6 +103,45 @@ body {
 
 .milil:hover {
     text-shadow: 0 0 8px var(--gold-bright);
+}
+
+/* ----- ----- FOOTER ----- ----- */
+.repo-footer {
+    padding: 10px 0 5px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.footer-line {
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold-muted), transparent);
+    margin-bottom: 15px;
+    opacity: 0.3;
+}
+
+.github-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: var(--gold-muted);
+    font-family: 'Cinzel', serif; /* Manteniendo el estilo BG3 */
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.github-link span {
+    letter-spacing: 1px;
+    font-variant: small-caps; /* Le da un aire de manuscrito antiguo */
+}
+
+.github-link span:hover {
+    color: var(--gold-bright);
+    text-shadow: 0 0 10px rgba(244, 208, 63, 0.5);
+    cursor: pointer;
 }
 
 /* ----- ----- CONTROLS ----- ----- */
