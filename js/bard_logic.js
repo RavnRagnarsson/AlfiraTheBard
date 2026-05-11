@@ -1,5 +1,5 @@
 // Configuración: Define aquí tus instrumentos exactos
-const instrumentos = ['drum', 'flute', 'lute', 'lyre', 'violin', 'voice'];
+const instrumentos = ['lute', 'flute', 'violin', 'lyre', 'drum', 'voice'];
 const songSelect = document.getElementById('songSelect');
 const mixerContainer = document.getElementById('mixer');
 const btnPlay = document.getElementById('btnPlay');
@@ -14,6 +14,7 @@ let audioCtx;
 let analyser;
 let source;
 let dataArray;
+let gainNodes = {};
 
 let audioElements = {};
 let isPlaying = false;
@@ -44,20 +45,21 @@ function initMixer() {
         // El evento ahora es para toda la FILA
         row.addEventListener('click', () => {
             const checkbox = row.querySelector('input');
-            
-            // Invertimos el estado
             checkbox.checked = !checkbox.checked;
-            audio.muted = !checkbox.checked;
+            const isMuted = !checkbox.checked;
 
-            // Cambiamos la clase visual
-            if (audio.muted) {
-                row.classList.add('is-muted');
-            } else {
-                row.classList.remove('is-muted');
-            }
+            // 1. Efecto visual inmediato
+            row.classList.toggle('is-muted', isMuted);
 
-            row.classList.toggle('is-muted', audio.muted);
-        });        
+            // 2. Aplicar al audio (si ya existe el nodo de ganancia)
+            if (gainNodes[inst]) {
+                gainNodes[inst].gain.setTargetAtTime(isMuted ? 0 : 1, audioCtx.currentTime, 0.02);
+            } 
+            
+            // 3. Importante: Siempre aplicarlo al elemento de audio base como respaldo
+            audioElements[inst].muted = isMuted;
+            audioElements[inst].volume = isMuted ? 0 : 1;
+        });
 
         // Evento para mutear/desmutear al vuelo
         row.querySelector('input').addEventListener('change', (e) => {
@@ -87,12 +89,23 @@ function setupVisualizer() {
     if (!audioCtx) {
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         analyser = audioCtx.createAnalyser();
-        
-        // Conectamos el "leaderAudio" al analizador
-        source = audioCtx.createMediaElementSource(leaderAudio);
-        source.connect(analyser);
+
+        // Conectamos TODOS los instrumentos al analizador para que 
+        // la sincronía sea idéntica para todos a nivel de hardware
+        instrumentos.forEach(inst => {
+            const source = audioCtx.createMediaElementSource(audioElements[inst]);
+            const gainNode = audioCtx.createGain();
+            
+            // Verificamos el estado del checkbox real antes de conectar
+            const isMutedInUI = !document.getElementById(`check_${inst}`).checked;
+            gainNode.gain.value = isMutedInUI ? 0 : 1;
+
+            source.connect(gainNode);
+            gainNode.connect(analyser);
+            gainNodes[inst] = gainNode;
+        });
+
         analyser.connect(audioCtx.destination);
-        
         analyser.fftSize = 512; // Cantidad de barras
         const bufferLength = analyser.frequencyBinCount;
         dataArray = new Uint8Array(bufferLength);
@@ -134,8 +147,13 @@ btnPlay.addEventListener('click', () => {
     }
 
     if (!isPlaying) {
-        // Reproducir todos simultáneamente
-        Object.values(audioElements).forEach(a => a.play());
+        // Tomamos el tiempo del líder y le sumamos un micro-margen de seguridad
+        const syncTime = leaderAudio.currentTime;
+        const startTime = leaderAudio.currentTime;
+        Object.values(audioElements).forEach(a => {
+            a.currentTime = syncTime;
+            a.play();
+        });
         isPlaying = true;
         btnPlay.innerText = "PAUSE";
     } else {
@@ -157,7 +175,7 @@ songSelect.addEventListener('change', () => {
 initMixer();
 
 // Elegir una pieza de audio para dirigir al resto (el líder)
-const leaderAudio = audioElements[instrumentos[2]]; 
+const leaderAudio = audioElements[instrumentos[0]]; 
 
 leaderAudio.ontimeupdate = () => {
     // Actualizar la barra de progreso
